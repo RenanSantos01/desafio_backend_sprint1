@@ -1,0 +1,14 @@
+D:\Sprint_1\DesafioBackend\bin\Debug\net10.0\DesafioBackend.exe
+D:\Sprint_1\DesafioBackend\bin\Debug\net10.0\DesafioBackend.deps.json
+D:\Sprint_1\DesafioBackend\bin\Debug\net10.0\DesafioBackend.runtimeconfig.json
+D:\Sprint_1\DesafioBackend\bin\Debug\net10.0\DesafioBackend.dll
+D:\Sprint_1\DesafioBackend\bin\Debug\net10.0\DesafioBackend.pdb
+D:\Sprint_1\DesafioBackend\obj\Debug\net10.0\DesafioBackend.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sprint_1\DesafioBackend\obj\Debug\net10.0\DesafioBackend.AssemblyInfoInputs.cache
+D:\Sprint_1\DesafioBackend\obj\Debug\net10.0\DesafioBackend.AssemblyInfo.cs
+D:\Sprint_1\DesafioBackend\obj\Debug\net10.0\DesafioBackend.csproj.CoreCompileInputs.cache
+D:\Sprint_1\DesafioBackend\obj\Debug\net10.0\DesafioBackend.dll
+D:\Sprint_1\DesafioBackend\obj\Debug\net10.0\refint\DesafioBackend.dll
+D:\Sprint_1\DesafioBackend\obj\Debug\net10.0\DesafioBackend.pdb
+D:\Sprint_1\DesafioBackend\obj\Debug\net10.0\DesafioBackend.genruntimeconfig.cache
+D:\Sprint_1\DesafioBackend\obj\Debug\net10.0\ref\DesafioBackend.dll

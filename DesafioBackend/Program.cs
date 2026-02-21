@@ -4,57 +4,6 @@ using System.Linq;
 
 namespace SistemaBancario
 {
-    // Classe Pai Abstrata - Requisito POO (Ação 2)
-    public abstract class ContaBancaria
-    {
-        public string NumeroConta { get; set; }
-        public string Titular { get; set; }
-        public double Saldo { get; protected set; } // Encapsulamento
-
-        public ContaBancaria(string numero, string titular, double saldoInicial)
-        {
-            NumeroConta = numero;
-            Titular = titular;
-            Saldo = saldoInicial;
-        }
-
-        public virtual void Sacar(double valor) // Polimorfismo
-        {
-            if (valor <= 0) throw new ArgumentException("O valor do saque deve ser positivo.");
-            if (valor > Saldo) throw new InvalidOperationException("Saldo insuficiente.");
-            Saldo -= valor;
-        }
-
-        public void Depositar(double valor)
-        {
-            if (valor <= 0) throw new ArgumentException("O valor do depósito deve ser positivo.");
-            Saldo += valor;
-        }
-
-        public abstract string ExibirDados();
-    }
-
-    // Herança: Conta Corrente com taxa (Tema 1 da Aula)
-    public class ContaCorrente : ContaBancaria
-    {
-        private const double TaxaSaque = 2.50;
-        public ContaCorrente(string n, string t, double s) : base(n, t, s) { }
-
-        public override void Sacar(double valor)
-        {
-            base.Sacar(valor + TaxaSaque);
-        }
-
-        public override string ExibirDados() => $"[Corrente] Conta: {NumeroConta} | Titular: {Titular} | Saldo: R${Saldo:F2}";
-    }
-
-    // Herança: Conta Poupança (Tema 1 da Aula)
-    public class ContaPoupanca : ContaBancaria
-    {
-        public ContaPoupanca(string n, string t, double s) : base(n, t, s) { }
-        public override string ExibirDados() => $"[Poupança] Conta: {NumeroConta} | Titular: {Titular} | Saldo: R${Saldo:F2}";
-    }
-
     class Program
     {
         static void Main(string[] args)
@@ -64,7 +13,7 @@ namespace SistemaBancario
 
             while (continuar)
             {
-                try // Tratamento de exceções (Passo 10)
+                try
                 {
                     Console.WriteLine("\n--- SISTEMA BANCÁRIO ---");
                     Console.WriteLine("1. Criar Conta Corrente");
@@ -82,8 +31,8 @@ namespace SistemaBancario
                         case "1":
                             Console.Write("Nome do Titular: ");
                             string t1 = Console.ReadLine();
-                            contas.Add(new ContaCorrente(new Random().Next(1000, 9999).ToString(), t1, 0));
-                            Console.WriteLine("Conta Corrente criada!");
+                            contas.Add(new ContaCorrente(new Random().Next(1000, 9999).ToString(), t1, 0)); 
+                            Console.WriteLine("Conta Corrente criada com R$ 500,00!");
                             break;
                         case "2":
                             Console.Write("Nome do Titular: ");

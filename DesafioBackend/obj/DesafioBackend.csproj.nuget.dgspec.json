@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Sprint_1\\DesafioBackend\\DesafioBackend.csproj": {}
+    "C:\\Users\\renan\\Downloads\\desafio_backend_sprint1\\DesafioBackend\\DesafioBackend.csproj": {}
   },
   "projects": {
-    "D:\\Sprint_1\\DesafioBackend\\DesafioBackend.csproj": {
+    "C:\\Users\\renan\\Downloads\\desafio_backend_sprint1\\DesafioBackend\\DesafioBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Sprint_1\\DesafioBackend\\DesafioBackend.csproj",
+        "projectUniqueName": "C:\\Users\\renan\\Downloads\\desafio_backend_sprint1\\DesafioBackend\\DesafioBackend.csproj",
         "projectName": "DesafioBackend",
-        "projectPath": "D:\\Sprint_1\\DesafioBackend\\DesafioBackend.csproj",
+        "projectPath": "C:\\Users\\renan\\Downloads\\desafio_backend_sprint1\\DesafioBackend\\DesafioBackend.csproj",
         "packagesPath": "C:\\Users\\renan\\.nuget\\packages\\",
-        "outputPath": "D:\\Sprint_1\\DesafioBackend\\obj\\",
+        "outputPath": "C:\\Users\\renan\\Downloads\\desafio_backend_sprint1\\DesafioBackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\renan\\AppData\\Roaming\\NuGet\\NuGet.Config"

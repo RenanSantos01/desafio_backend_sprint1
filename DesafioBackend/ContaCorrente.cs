@@ -8,7 +8,7 @@ namespace SistemaBancario
 
         public override void Sacar(double valor)
         {
-            // O polimorfismo chama o Sacar da base somando a taxa
+            
             base.Sacar(valor + TaxaSaque);
         }
 

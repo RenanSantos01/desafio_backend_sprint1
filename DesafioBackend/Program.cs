@@ -24,46 +24,73 @@ namespace SistemaBancario
                     Console.WriteLine("0. Sair");
                     Console.Write("Opção: ");
 
-                    string opcao = Console.ReadLine();
+                    string? opcao = Console.ReadLine();
+
+                    if (opcao == "0")
+                    {
+                        continuar = false;
+                        Console.WriteLine("Encerrando o sistema...");
+                        continue;
+                    }
 
                     switch (opcao)
                     {
                         case "1":
                             Console.Write("Nome do Titular: ");
-                            string t1 = Console.ReadLine();
-                            contas.Add(new ContaCorrente(new Random().Next(1000, 9999).ToString(), t1, 0)); 
-                            Console.WriteLine("Conta Corrente criada com R$ 500,00!");
+                            string titular1 = Console.ReadLine() ?? "Titular Desconhecido";
+                            string num1 = new Random().Next(1000, 9999).ToString();
+                            var novaCC = new ContaCorrente(num1, titular1, 0);
+                            contas.Add(novaCC);
+                            Console.WriteLine("\n✅ Conta Corrente criada com sucesso!");
+                            Console.WriteLine(novaCC.ExibirDados());
                             break;
+
                         case "2":
                             Console.Write("Nome do Titular: ");
-                            string t2 = Console.ReadLine();
-                            contas.Add(new ContaPoupanca(new Random().Next(1000, 9999).ToString(), t2, 0));
-                            Console.WriteLine("Conta Poupança criada!");
+                            string titular2 = Console.ReadLine() ?? "Titular Desconhecido";
+                            string num2 = new Random().Next(1000, 9999).ToString();
+                            var novaCP = new ContaPoupanca(num2, titular2, 0);
+                            contas.Add(novaCP);
+                            Console.WriteLine("\n✅ Conta Poupança criada com sucesso!");
+                            Console.WriteLine(novaCP.ExibirDados());
                             break;
+
                         case "3":
-                            Console.Write("Número da conta: ");
-                            string ns = Console.ReadLine();
+                            Console.Write("Digite o número da conta para SAQUE: ");
+                            string? ns = Console.ReadLine();
                             var cs = contas.FirstOrDefault(c => c.NumeroConta == ns);
                             if (cs == null) throw new Exception("Conta não encontrada.");
+                            
                             Console.Write("Valor do saque: ");
-                            cs.Sacar(double.Parse(Console.ReadLine()));
-                            Console.WriteLine("Sucesso!");
+                            if (double.TryParse(Console.ReadLine(), out double valS))
+                            {
+                                cs.Sacar(valS);
+                                Console.WriteLine($"Sucesso! Novo Saldo: R${cs.Saldo:F2}");
+                            }
+                            else throw new Exception("Valor inválido.");
                             break;
+
                         case "4":
-                            Console.Write("Número da conta: ");
-                            string nd = Console.ReadLine();
+                            Console.Write("Digite o número da conta para DEPÓSITO: ");
+                            string? nd = Console.ReadLine();
                             var cd = contas.FirstOrDefault(c => c.NumeroConta == nd);
                             if (cd == null) throw new Exception("Conta não encontrada.");
+                            
                             Console.Write("Valor do depósito: ");
-                            cd.Depositar(double.Parse(Console.ReadLine()));
-                            Console.WriteLine("Sucesso!");
+                            if (double.TryParse(Console.ReadLine(), out double valD))
+                            {
+                                cd.Depositar(valD);
+                                Console.WriteLine($"Sucesso! Novo Saldo: R${cd.Saldo:F2}");
+                            }
+                            else throw new Exception("Valor inválido.");
                             break;
+
                         case "5":
-                            contas.ForEach(c => Console.WriteLine(c.ExibirDados()));
+                            Console.WriteLine("\n--- LISTA DE TODAS AS CONTAS ---");
+                            if (!contas.Any()) Console.WriteLine("Nenhuma conta cadastrada.");
+                            else contas.ForEach(c => Console.WriteLine(c.ExibirDados()));
                             break;
-                        case "0":
-                            continuar = false;
-                            break;
+
                         default:
                             Console.WriteLine("Opção inválida.");
                             break;
@@ -71,7 +98,7 @@ namespace SistemaBancario
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"ERRO: {ex.Message}");
+                    Console.WriteLine($"\n ERRO: {ex.Message}");
                 }
             }
         }

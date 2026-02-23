@@ -8,24 +8,31 @@
     "net10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\renan\\.nuget\\packages\\": {}
+    "C:\\Users\\232.933594\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\renan\\Downloads\\desafio_backend_sprint1\\DesafioBackend\\DesafioBackend.csproj",
+      "projectUniqueName": "C:\\Users\\232.933594\\Desktop\\desafio_backend_sprint1\\DesafioBackend\\DesafioBackend.csproj",
       "projectName": "DesafioBackend",
-      "projectPath": "C:\\Users\\renan\\Downloads\\desafio_backend_sprint1\\DesafioBackend\\DesafioBackend.csproj",
-      "packagesPath": "C:\\Users\\renan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\renan\\Downloads\\desafio_backend_sprint1\\DesafioBackend\\obj\\",
+      "projectPath": "C:\\Users\\232.933594\\Desktop\\desafio_backend_sprint1\\DesafioBackend\\DesafioBackend.csproj",
+      "packagesPath": "C:\\Users\\232.933594\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\232.933594\\Desktop\\desafio_backend_sprint1\\DesafioBackend\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\renan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\232.933594\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

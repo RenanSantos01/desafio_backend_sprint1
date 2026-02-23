@@ -18,77 +18,83 @@ namespace SistemaBancario
                     Console.WriteLine("\n--- SISTEMA BANCÁRIO ---");
                     Console.WriteLine("1. Criar Conta Corrente");
                     Console.WriteLine("2. Criar Conta Poupança");
-                    Console.WriteLine("3. Sacar");
-                    Console.WriteLine("4. Depositar");
-                    Console.WriteLine("5. Listar Contas");
+                    Console.WriteLine("3. Criar Conta Empresarial");
+                    Console.WriteLine("4. Sacar");
+                    Console.WriteLine("5. Depositar");
+                    Console.WriteLine("6. Listar Contas");
+                    Console.WriteLine("7. Aplicar Rendimento (Poupança)");
+                    Console.WriteLine("8. Realizar Empréstimo (Empresarial)");
                     Console.WriteLine("0. Sair");
                     Console.Write("Opção: ");
 
                     string? opcao = Console.ReadLine();
-
-                    if (opcao == "0")
-                    {
-                        continuar = false;
-                        Console.WriteLine("Encerrando o sistema...");
-                        continue;
-                    }
+                    if (opcao == "0") { continuar = false; continue; }
 
                     switch (opcao)
                     {
                         case "1":
-                            Console.Write("Nome do Titular: ");
-                            string titular1 = Console.ReadLine() ?? "Titular Desconhecido";
-                            string num1 = new Random().Next(1000, 9999).ToString();
-                            var novaCC = new ContaCorrente(num1, titular1, 0);
-                            contas.Add(novaCC);
-                            Console.WriteLine("\n✅ Conta Corrente criada com sucesso!");
-                            Console.WriteLine(novaCC.ExibirDados());
+                            Console.Write("Titular Corrente: ");
+                            var c1 = new ContaCorrente(GerarNumero(), Console.ReadLine() ?? "Titular", 0);
+                            contas.Add(c1);
+                            Console.WriteLine("✅ " + c1.ExibirDados());
                             break;
 
                         case "2":
-                            Console.Write("Nome do Titular: ");
-                            string titular2 = Console.ReadLine() ?? "Titular Desconhecido";
-                            string num2 = new Random().Next(1000, 9999).ToString();
-                            var novaCP = new ContaPoupanca(num2, titular2, 0);
-                            contas.Add(novaCP);
-                            Console.WriteLine("\n✅ Conta Poupança criada com sucesso!");
-                            Console.WriteLine(novaCP.ExibirDados());
+                            Console.Write("Titular Poupança: ");
+                            var c2 = new ContaPoupanca(GerarNumero(), Console.ReadLine() ?? "Titular", 0);
+                            contas.Add(c2);
+                            Console.WriteLine("✅ " + c2.ExibirDados());
                             break;
 
                         case "3":
-                            Console.Write("Digite o número da conta para SAQUE: ");
-                            string? ns = Console.ReadLine();
-                            var cs = contas.FirstOrDefault(c => c.NumeroConta == ns);
-                            if (cs == null) throw new Exception("Conta não encontrada.");
-                            
-                            Console.Write("Valor do saque: ");
-                            if (double.TryParse(Console.ReadLine(), out double valS))
-                            {
-                                cs.Sacar(valS);
-                                Console.WriteLine($"Sucesso! Novo Saldo: R${cs.Saldo:F2}");
-                            }
-                            else throw new Exception("Valor inválido.");
+                            Console.Write("Titular Empresa: ");
+                            // Agora não pede mais o limite, pois é fixo em 10.000
+                            var c3 = new ContaEmpresarial(GerarNumero(), Console.ReadLine() ?? "Empresa", 0);
+                            contas.Add(c3);
+                            Console.WriteLine("✅ " + c3.ExibirDados());
                             break;
 
                         case "4":
-                            Console.Write("Digite o número da conta para DEPÓSITO: ");
-                            string? nd = Console.ReadLine();
-                            var cd = contas.FirstOrDefault(c => c.NumeroConta == nd);
-                            if (cd == null) throw new Exception("Conta não encontrada.");
-                            
-                            Console.Write("Valor do depósito: ");
-                            if (double.TryParse(Console.ReadLine(), out double valD))
-                            {
-                                cd.Depositar(valD);
-                                Console.WriteLine($"Sucesso! Novo Saldo: R${cd.Saldo:F2}");
-                            }
-                            else throw new Exception("Valor inválido.");
+                            Console.Write("Número da conta: ");
+                            string? ns = Console.ReadLine();
+                            var contaS = contas.FirstOrDefault(c => c.NumeroConta == ns);
+                            if (contaS == null) throw new Exception("Conta não encontrada.");
+                            Console.Write("Valor: ");
+                            contaS.Sacar(double.Parse(Console.ReadLine() ?? "0"));
+                            Console.WriteLine("✅ Sucesso!");
                             break;
 
                         case "5":
-                            Console.WriteLine("\n--- LISTA DE TODAS AS CONTAS ---");
-                            if (!contas.Any()) Console.WriteLine("Nenhuma conta cadastrada.");
-                            else contas.ForEach(c => Console.WriteLine(c.ExibirDados()));
+                            Console.Write("Número da conta: ");
+                            string? nd = Console.ReadLine();
+                            var contaD = contas.FirstOrDefault(c => c.NumeroConta == nd);
+                            if (contaD == null) throw new Exception("Conta não encontrada.");
+                            Console.Write("Valor: ");
+                            contaD.Depositar(double.Parse(Console.ReadLine() ?? "0"));
+                            Console.WriteLine("✅ Sucesso!");
+                            break;
+
+                        case "6":
+                            contas.ForEach(c => Console.WriteLine(c.ExibirDados()));
+                            break;
+
+                        case "7":
+                            Console.Write("Número Poupança: ");
+                            string? nr = Console.ReadLine();
+                            var cp = contas.OfType<ContaPoupanca>().FirstOrDefault(c => c.NumeroConta == nr);
+                            if (cp == null) throw new Exception("Poupança não encontrada.");
+                            Console.Write("Taxa %: ");
+                            cp.AdicionarRendimento(double.Parse(Console.ReadLine() ?? "0"));
+                            Console.WriteLine("✅ Rendimento aplicado!");
+                            break;
+
+                        case "8":
+                            Console.Write("Número Empresarial: ");
+                            string? ne = Console.ReadLine();
+                            var ce = contas.OfType<ContaEmpresarial>().FirstOrDefault(c => c.NumeroConta == ne);
+                            if (ce == null) throw new Exception("Conta Empresarial não encontrada.");
+                            Console.Write("Valor Empréstimo: ");
+                            ce.RealizarEmprestimo(double.Parse(Console.ReadLine() ?? "0"));
                             break;
 
                         default:
@@ -102,5 +108,7 @@ namespace SistemaBancario
                 }
             }
         }
+
+        static string GerarNumero() => new Random().Next(1000, 9999).ToString();
     }
 }

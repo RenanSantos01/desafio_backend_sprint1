@@ -2,11 +2,12 @@ using System;
 
 namespace SistemaBancario
 {
-    public abstract class ContaBancaria
+    // A classe agora assina o contrato da interface IConta
+    public abstract class ContaBancaria : IConta
     {
         public string NumeroConta { get; set; }
         public string Titular { get; set; }
-        public double Saldo { get; protected set; }
+        public double Saldo { get; protected set; } // Encapsulamento
 
         public ContaBancaria(string numero, string titular, double saldoInicial)
         {
@@ -15,7 +16,7 @@ namespace SistemaBancario
             Saldo = saldoInicial;
         }
 
-        public virtual void Sacar(double valor)
+        public virtual void Sacar(double valor) // Polimorfismo (preparado para override)
         {
             if (valor <= 0) throw new ArgumentException("O valor do saque deve ser positivo.");
             if (valor > Saldo) throw new InvalidOperationException("Saldo insuficiente.");
@@ -28,6 +29,6 @@ namespace SistemaBancario
             Saldo += valor;
         }
 
-        public abstract string ExibirDados();
+        public abstract string ExibirDados(); // Polimorfismo (obrigatório para as filhas)
     }
 }

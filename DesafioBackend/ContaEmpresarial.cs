@@ -6,7 +6,7 @@ namespace SistemaBancario
     {
         public double LimiteEmprestimo { get; private set; }
 
-        // O limite agora é fixado em 10000 no construtor
+        
         public ContaEmpresarial(string n, string t, double s) : base(n, t, s)
         {
             LimiteEmprestimo = 10000.00;
@@ -18,7 +18,7 @@ namespace SistemaBancario
             if (valor > LimiteEmprestimo) throw new InvalidOperationException("Valor acima do limite de R$ 10.000,00.");
 
             Depositar(valor);
-            LimiteEmprestimo -= valor; // Opcional: subtrai o limite disponível
+            LimiteEmprestimo -= valor; 
             Console.WriteLine($"Empréstimo de R${valor:F2} realizado com sucesso!");
         }
 

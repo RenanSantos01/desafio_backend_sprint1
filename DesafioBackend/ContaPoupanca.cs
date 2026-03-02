@@ -6,7 +6,7 @@ namespace SistemaBancario
     {
         public ContaPoupanca(string n, string t, double s) : base(n, t, s) { }
 
-        // Método de rendimento solicitado
+        
         public void AdicionarRendimento(double taxa)
         {
             if (taxa <= 0) throw new ArgumentException("A taxa deve ser positiva.");

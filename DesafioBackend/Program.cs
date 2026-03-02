@@ -48,7 +48,7 @@ namespace SistemaBancario
 
                         case "3":
                             Console.Write("Titular Empresa: ");
-                            // Agora não pede mais o limite, pois é fixo em 10.000
+                            
                             var c3 = new ContaEmpresarial(GerarNumero(), Console.ReadLine() ?? "Empresa", 0);
                             contas.Add(c3);
                             Console.WriteLine("✅ " + c3.ExibirDados());
